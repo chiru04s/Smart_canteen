@@ -11,7 +11,7 @@ The **Smart Canteen System** is a MERN stack application designed to streamline 
 - 📊 View order history and sales reports.
 - 🔐 Manage user roles and permissions.
 
-### 👩‍🍳 **Server**
+### 👩‍🍳 **Server->caterer**
 - 📝 Take orders from users.
 - 🚀 Update order status (pending, completed).
 - 📋 View active orders.
@@ -29,4 +29,4 @@ The **Smart Canteen System** is a MERN stack application designed to streamline 
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
 - **Authentication**: JWT (JSON Web Tokens)
-- 
+  
