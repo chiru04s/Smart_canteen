@@ -1,0 +1,69 @@
+/* AuthPage.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, #f4f8f2 10%, #25ed3d 100%);
+  }
+  
+  .auth-card {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .auth-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .auth-buttons {
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+  }
+  
+  .auth-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .login-button {
+    background-color: #ff6f61;
+    color: white;
+  }
+  
+  .signup-button {
+    background-color: #6ab7ff;
+    color: white;
+  }
+  
+  .auth-button:hover {
+    opacity: 0.9;
+  }
+  
+  .auth-icon {
+    margin-right: 8px;
+  }
+  

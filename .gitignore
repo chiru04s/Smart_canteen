@@ -1,0 +1,27 @@
+# Node.js
+node_modules/
+.env
+.DS_Store
+
+# Vite
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build and cache
+build/
+.cache/
+vite.config.js.timestamp*
+
+# IDE configs
+.vscode/
+.idea/
+
+# Coverage reports
+coverage/
+
+# OS junk files
+Thumbs.db
