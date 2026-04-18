@@ -1,10 +1,18 @@
+
 const mongoose = require('mongoose');
 
 // ✅ Your MongoDB Compass connection string
 // For LOCAL MongoDB (default): mongodb://localhost:27017/sac_snacks_wallet
 // For MongoDB Atlas:           mongodb+srv://<user>:<pass>@cluster0.xxxxx.mongodb.net/sac_snacks_wallet
 
-const MONGO_URI = "mongodb://localhost:27017/sac_snacks_wallet";
+
+require('dotenv').config();
+
+// ✅ Your MongoDB Compass connection string
+// For LOCAL MongoDB (default): mongodb://localhost:27017/sac_snacks_wallet
+// For MongoDB Atlas:           mongodb+srv://<user>:<pass>@cluster0.xxxxx.mongodb.net/sac_snacks_wallet
+
+const MONGO_URI = process.env.MONGO_URI;
 
 const connectDB = async () => {
   try {

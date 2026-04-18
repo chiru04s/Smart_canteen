@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
@@ -13,7 +14,7 @@ const homePage = require("./routes/User/homepage");
 const orders = require("./routes/orders");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors()); // Allow all origins
