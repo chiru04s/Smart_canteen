@@ -42,7 +42,7 @@ const CheckoutPage = () => {
         })),
       };
 
-      const response = await axios.post("http://localhost:3000/orders", orderPayload);
+      const response = await axios.post("https://smart-canteen-yy54.onrender.com/orders", orderPayload);
 
       if (response.data.success) {
         // Clear cart after successful order

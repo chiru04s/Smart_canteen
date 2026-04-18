@@ -18,7 +18,7 @@ export default function LoginPage() {
     }
     try {
       // Send login request to the backend
-      const response = await axios.post("http://localhost:3000/admin", {
+      const response = await axios.post("https://smart-canteen-yy54.onrender.com/admin", {
         AdminId: adminId,
         AdminPassword: password,
       });

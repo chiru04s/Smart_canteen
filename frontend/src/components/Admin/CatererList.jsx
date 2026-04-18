@@ -11,7 +11,7 @@ const CatererList = () => {
     const fetchCaterers = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/admin/dashboard/catererList"
+          "https://smart-canteen-yy54.onrender.com/admin/dashboard/catererList"
         );
         console.log('Fetched caterers:', response.data.data); // Log the response
         setCaterers(response.data.data);

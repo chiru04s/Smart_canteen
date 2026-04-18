@@ -41,8 +41,9 @@ app.use((err, req, res, next) => {
 });
 
 // Connect to MongoDB, then start server
+// Connect to MongoDB, then start server
 connectDB().then(() => {
-  app.listen(port, () => {
+  app.listen(port, "0.0.0.0", () => {
     console.log(`🚀 Server listening on port ${port}`);
   });
 });
