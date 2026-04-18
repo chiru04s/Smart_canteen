@@ -29,7 +29,7 @@ const CatererList = () => {
     
     try {
       await axios.delete(
-        `${process.env.REACT_APP_API_URL}/admin/dashboard/catererList/${catererId}`
+        `${import.meta.env.VITE_API_URL}/admin/dashboard/catererList/${catererId}`
       );
       console.log('Before filter:', caterers); // Log before filtering
       const updatedCaterers = caterers.filter(

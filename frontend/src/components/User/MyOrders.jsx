@@ -27,7 +27,7 @@ const MyOrders = () => {
     if (!user?.id) return;
     const fetchOrders = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/orders/user/${user.id}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/orders/user/${user.id}`);
         setOrders(res.data.data || []);
       } catch (err) {
         toast.error("Could not load your orders.");

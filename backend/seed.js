@@ -6,7 +6,7 @@
 const mongoose = require('mongoose');
 const Admin = require('./models/Admin');
 
-const MONGO_URI = "mongodb://localhost:27017/sac_snacks_wallet";
+const MONGO_URI = "${process.env.MONGO_URI}/sac_snacks_wallet";
 
 async function seedAdmin() {
   try {

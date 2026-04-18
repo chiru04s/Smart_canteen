@@ -30,7 +30,7 @@ const OrdersPage = () => {
 
   const fetchOrders = async () => {
     try {
-      const res = await axios.get("${process.env.REACT_APP_API_URL}/orders/admin/all");
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/orders/admin/all`);
       setOrders(res.data.data || []);
     } catch (err) {
       toast.error("Failed to load orders.");
@@ -41,7 +41,7 @@ const OrdersPage = () => {
 
   const fetchCaterers = async () => {
     try {
-      const res = await axios.get("${process.env.REACT_APP_API_URL}/admin/dashboard/catererList");
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/admin/dashboard/catererList`);
       setCaterers(res.data.data || []);
     } catch (err) {
       // no caterers yet is fine

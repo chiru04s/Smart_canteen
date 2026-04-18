@@ -28,7 +28,7 @@ const AddFoodItem = () => {
     //   });
     try {
       await axios.post(
-        "${process.env.REACT_APP_API_URL}/admin/dashboard/foodItems",
+        `${import.meta.env.VITE_API_URL}/admin/dashboard/foodItems`,
         formData,
         {
           headers: {

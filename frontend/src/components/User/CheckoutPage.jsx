@@ -42,7 +42,7 @@ const CheckoutPage = () => {
         })),
       };
 
-      const response = await axios.post("${process.env.REACT_APP_API_URL}/orders", orderPayload);
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/orders`, orderPayload);
 
       if (response.data.success) {
         // Clear cart after successful order
