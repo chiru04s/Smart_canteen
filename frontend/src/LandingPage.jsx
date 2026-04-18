@@ -15,12 +15,12 @@ export default function LandingPage() {
               <div className="nav__logo">
                 <a href="#">
                   <img
-                    src="assets/logo sac-Photoroom.png"
+                    src="assets/logo_sac-Photoroom.png"
                     alt="logo"
                     className="nav__logo-dark"
                   />
                   <img
-                    src="assets/logo sac-Photoroom.png"
+                    src="assets/logo_sac-Photoroom.png"
                     alt="logo"
                     className="nav__logo-white"
                   />
@@ -80,7 +80,7 @@ export default function LandingPage() {
           </p>
           <div className="order__grid">
             <div className="order__card">
-              <img src="assets/puff sac.jpg" alt="order" />
+              <img src="assets/puff_sac.jpg" alt="order" />
               <h4>Crispy Puff</h4>
               <p>"Flaky, buttery, and simply irresistible!"</p>
               <Link to="/auth">
@@ -88,7 +88,7 @@ export default function LandingPage() {
               </Link>{" "}
             </div>
             <div className="order__card">
-              <img src="assets/roll sac.jpg" alt="order" />
+              <img src="assets/roll_sac.jpg" alt="order" />
               <h4>Veg Roll</h4>
               <p>"Wrapped in flavor, rolled with love!"</p>
               <Link to="/auth">
@@ -96,7 +96,7 @@ export default function LandingPage() {
               </Link>{" "}
             </div>
             <div className="order__card">
-              <img src="assets/bicuit12 sac.jpg" alt="order" />
+              <img src="assets/bicuit12_sac.jpg" alt="order" />
               <h4>Cookies</h4>
               <p>"Crispy, chewy, and baked to perfection!"</p>
               <Link to="/auth">
@@ -108,7 +108,7 @@ export default function LandingPage() {
         <section className="section__container event__container" id="event">
           <div className="event__content">
             <div className="event__image">
-              <img src="assets/sac tea.jpg" alt="event" />
+              <img src="assets/sac_tea.jpg" alt="event" />
             </div>
             <div className="event__details">
               <h2 className="section__header" style={{ textAlign: "center" }}>
@@ -132,7 +132,7 @@ export default function LandingPage() {
           <footer className="footer">
             <div className="section__container footer__container">
               <div className="footer__logo">
-                <img src="assets/logo sac.jpg" alt="logo" />
+                <img src="assets/logo_sac.jpg" alt="logo" />
               </div>
               <div className="footer__content">
                 <p>

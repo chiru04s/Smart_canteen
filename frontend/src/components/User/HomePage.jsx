@@ -59,7 +59,7 @@ const HomePage = () => {
       <ToastContainer />
       <nav className="flex justify-between items-center p-4 bg-white shadow">
         <div className="flex items-center">
-          <img src="logo.png" alt="Logo" className="w-8 h-8 mr-2" />
+          <img src="/logo.png" alt="Logo" className="w-8 h-8 mr-2" />
         </div>
         <div className="flex items-center space-x-4">
           <FaUser />

@@ -64,7 +64,7 @@ const CheckoutPage = () => {
 
       {/* Header */}
       <nav className="flex justify-between items-center p-4 bg-white shadow">
-        <img src="logo.png" alt="Logo" className="w-8 h-8" />
+        <img src="/logo.png" alt="Logo" className="w-8 h-8" />
         <span className="font-semibold text-gray-700">Checkout</span>
         <Link to="/cart" className="text-blue-600 text-sm">← Back to Cart</Link>
       </nav>

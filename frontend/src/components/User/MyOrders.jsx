@@ -51,7 +51,7 @@ const MyOrders = () => {
       <ToastContainer />
 
       <nav className="flex justify-between items-center p-4 bg-white shadow">
-        <img src="logo.png" alt="Logo" className="w-8 h-8" />
+        <img src="/logo.png" alt="Logo" className="w-8 h-8" />
         <span className="font-semibold text-gray-700">My Orders</span>
         <Link to="/home" className="text-blue-600 text-sm">← Back to Menu</Link>
       </nav>
