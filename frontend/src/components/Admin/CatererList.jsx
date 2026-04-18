@@ -11,7 +11,7 @@ const CatererList = () => {
     const fetchCaterers = async () => {
       try {
         const response = await axios.get(
-          "${process.env.REACT_APP_API_URL}/admin/dashboard/catererList"
+          `${import.meta.env.VITE_API_URL}}/admin/dashboard/catererList`
         );
         console.log('Fetched caterers:', response.data.data); // Log the response
         setCaterers(response.data.data);

@@ -9,7 +9,7 @@
 const mongoose = require("mongoose");
 const FoodItem = require("./models/FoodItem");
 
-const MONGO_URI = "mongodb://localhost:27017/sac_snacks_wallet";
+const MONGO_URI = `process.env.MONGO_URI/sac_snacks_wallet`;
 
 const sampleItems = [
   { name: "Idly", price: 20, quantity: 50, date: "2025-01-01", image_path: null },
