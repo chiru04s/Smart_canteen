@@ -6,10 +6,12 @@
 const mongoose = require('mongoose');
 const Admin = require('./models/Admin');
 
-const MONGO_URI = "${process.env.MONGO_URI}/sac_snacks_wallet";
+// FIX: Use backticks (``) or reference the variable directly
+const MONGO_URI = `${process.env.MONGO_URI}`; 
 
 async function seedAdmin() {
   try {
+    // Note: Ensure your MONGO_URI in Render settings includes the database name
     await mongoose.connect(MONGO_URI);
     console.log("✅ Connected to MongoDB");
 
@@ -20,14 +22,14 @@ async function seedAdmin() {
       process.exit(0);
     }
 
-    // Create admin  ← Change these values if needed
+    // Create admin
     await Admin.create({
       AdminId: "sac2025",
       AdminPassword: "admin123"
     });
 
     console.log("✅ Admin created successfully!");
-    console.log("   AdminId:       sac2025");
+    console.log("   AdminId:       sakshi2026");
     console.log("   AdminPassword: admin123");
     process.exit(0);
   } catch (err) {
