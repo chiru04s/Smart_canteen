@@ -34,6 +34,13 @@ app.use("/login", login);                                   // User Login
 app.use("/homepage", homePage);
 app.use("/orders", orders);                                // Order management
 
+// Add this to handle the base URL
+app.get("/", (req, res) => {
+  res.status(200).json({
+    message: "Smart Canteen API is live!",
+    status: "Healthy"
+  });
+});
 // Global error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
