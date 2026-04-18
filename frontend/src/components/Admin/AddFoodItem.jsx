@@ -28,7 +28,7 @@ const AddFoodItem = () => {
     //   });
     try {
       await axios.post(
-        "https://smart-canteen-yy54.onrender.com/admin/dashboard/foodItems",
+        "${process.env.REACT_APP_API_URL}/admin/dashboard/foodItems",
         formData,
         {
           headers: {

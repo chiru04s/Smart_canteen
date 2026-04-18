@@ -22,7 +22,7 @@ export default function SignUp() {
 
     try {
       // Send registration request to the backend
-      const response = await axios.post("https://smart-canteen-yy54.onrender.com/signup", {
+      const response = await axios.post("${process.env.REACT_APP_API_URL}/signup", {
         name,
         department,
         identifier,

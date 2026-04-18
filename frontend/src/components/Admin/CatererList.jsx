@@ -11,7 +11,7 @@ const CatererList = () => {
     const fetchCaterers = async () => {
       try {
         const response = await axios.get(
-          "https://smart-canteen-yy54.onrender.com/admin/dashboard/catererList"
+          "${process.env.REACT_APP_API_URL}/admin/dashboard/catererList"
         );
         console.log('Fetched caterers:', response.data.data); // Log the response
         setCaterers(response.data.data);
@@ -29,7 +29,7 @@ const CatererList = () => {
     
     try {
       await axios.delete(
-        `http://localhost:3000/admin/dashboard/catererList/${catererId}`
+        `${process.env.REACT_APP_API_URL}/admin/dashboard/catererList/${catererId}`
       );
       console.log('Before filter:', caterers); // Log before filtering
       const updatedCaterers = caterers.filter(

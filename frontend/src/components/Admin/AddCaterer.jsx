@@ -15,7 +15,7 @@ export default function AddCaterer() {
       return;
     }
     try {
-        const response = await axios.post('https://smart-canteen-yy54.onrender.com/admin/dashboard/addCaterer', {
+        const response = await axios.post('${process.env.REACT_APP_API_URL}/admin/dashboard/addCaterer', {
             catererName,
             catererId
         });

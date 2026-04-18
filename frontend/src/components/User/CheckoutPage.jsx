@@ -42,7 +42,7 @@ const CheckoutPage = () => {
         })),
       };
 
-      const response = await axios.post("https://smart-canteen-yy54.onrender.com/orders", orderPayload);
+      const response = await axios.post("${process.env.REACT_APP_API_URL}/orders", orderPayload);
 
       if (response.data.success) {
         // Clear cart after successful order
@@ -103,7 +103,7 @@ const CheckoutPage = () => {
                       <td className="py-3 flex items-center gap-2">
                         {item.image_path && (
                           <img
-                            src={`http://localhost:3000/uploads/${item.image_path}`}
+                            src={`${process.env.REACT_APP_API_URL}/uploads/${item.image_path}`}
                             alt={item.name}
                             className="w-10 h-10 object-cover rounded"
                             onError={(e) => (e.target.style.display = "none")}

@@ -23,7 +23,7 @@ export default function Login() {
 
     try {
       // Send login request to the backend
-      const response = await axios.post("https://smart-canteen-yy54.onrender.com/login", {
+      const response = await axios.post("${process.env.REACT_APP_API_URL}/login", {
         idOrRollNo,
         role,
       });

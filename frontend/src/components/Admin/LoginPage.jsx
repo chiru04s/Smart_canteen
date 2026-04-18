@@ -18,7 +18,7 @@ export default function LoginPage() {
     }
     try {
       // Send login request to the backend
-      const response = await axios.post("https://smart-canteen-yy54.onrender.com/admin", {
+      const response = await axios.post("${process.env.REACT_APP_API_URL}/admin", {
         AdminId: adminId,
         AdminPassword: password,
       });

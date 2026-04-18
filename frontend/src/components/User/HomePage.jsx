@@ -10,14 +10,14 @@ import { AppContext } from "../../AppContext";
 const HomePage = () => {
   const navigate = useNavigate();
   const { user, setUser, addToCart, cart } = useContext(AppContext);
-  const backendURL = "https://smart-canteen-yy54.onrender.com";
+  const backendURL = "${process.env.REACT_APP_API_URL}";
   const [foodItems, setFoodItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchFoodItems = async () => {
       try {
-        const response = await axios.get("https://smart-canteen-yy54.onrender.com/homepage");
+        const response = await axios.get("${process.env.REACT_APP_API_URL}/homepage");
         // response.data.data is the array from MongoDB
         setFoodItems(response.data.data || []);
       } catch (error) {

@@ -30,7 +30,7 @@ const OrdersPage = () => {
 
   const fetchOrders = async () => {
     try {
-      const res = await axios.get("https://smart-canteen-yy54.onrender.com/orders/admin/all");
+      const res = await axios.get("${process.env.REACT_APP_API_URL}/orders/admin/all");
       setOrders(res.data.data || []);
     } catch (err) {
       toast.error("Failed to load orders.");
@@ -41,7 +41,7 @@ const OrdersPage = () => {
 
   const fetchCaterers = async () => {
     try {
-      const res = await axios.get("https://smart-canteen-yy54.onrender.com/admin/dashboard/catererList");
+      const res = await axios.get("${process.env.REACT_APP_API_URL}/admin/dashboard/catererList");
       setCaterers(res.data.data || []);
     } catch (err) {
       // no caterers yet is fine
@@ -55,7 +55,7 @@ const OrdersPage = () => {
       return;
     }
     try {
-      const res = await axios.patch(`https://smart-canteen-yy54.onrender.com/orders/${orderId}/accept`, { catererId });
+      const res = await axios.patch(`${process.env.REACT_APP_API_URL}/orders/${orderId}/accept`, { catererId });
       if (res.data.success) {
         toast.success("Order accepted & caterer assigned ✅");
         setOrders((prev) =>
@@ -70,7 +70,7 @@ const OrdersPage = () => {
   const handleReject = async (orderId) => {
     const note = rejectNote[orderId] || "Order rejected by admin";
     try {
-      const res = await axios.patch(`https://smart-canteen-yy54.onrender.com/orders/${orderId}/reject`, { note });
+      const res = await axios.patch(`${process.env.REACT_APP_API_URL}/orders/${orderId}/reject`, { note });
       if (res.data.success) {
         toast.success("Order rejected.");
         setOrders((prev) =>
