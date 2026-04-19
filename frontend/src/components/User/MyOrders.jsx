@@ -70,7 +70,7 @@ export default function MyOrders() {
     <div className="min-h-screen bg-gray-50">
       <ToastContainer />
       <nav className="flex justify-between items-center p-4 bg-white shadow">
-        <img src="logo.png" alt="Logo" className="w-8 h-8" />
+        <img src="assets/logo.png" alt="Logo" className="w-8 h-8" />
         <span className="font-semibold text-gray-700">{t("myOrdersTitle")}</span>
         <Link to="/home" className="text-blue-600 text-sm">← {t("menu")}</Link>
       </nav>

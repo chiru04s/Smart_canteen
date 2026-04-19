@@ -45,7 +45,7 @@ export default function HomePage() {
       <ToastContainer />
 
       <nav className="flex justify-between items-center px-4 py-3 bg-white shadow sticky top-0 z-10">
-        <img src="logo.png" alt="Logo" className="w-8 h-8" />
+        <img src="assets/logo.png" alt="Logo" className="w-8 h-8" />
 
         <div className="flex items-center gap-3 text-sm">
           {/* Language switcher */}

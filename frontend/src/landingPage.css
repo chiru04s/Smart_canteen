@@ -55,8 +55,9 @@
 }
 
 img {
-  display: flex;
-  width: 100%;
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 a {
@@ -97,8 +98,10 @@ nav {
   background-color: transparent;
 }
 
-.nav__logo img {
-  max-width: 100px;
+.nav__logo-img {
+  width: 150px;
+  height: auto;
+  display: block;
 }
 
 .nav__logo-dark {
@@ -169,18 +172,19 @@ nav {
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 1rem;
+  
 }
 
 .banner__card:nth-child(1) {
-  background-image: url("assets/biriyani\ sac.jpg");
+  background-image: url("assets/biriyani_sac.jpg");
 }
 
 .banner__card:nth-child(2) {
-  background-image: url("assets/idly\ sac.jpg");
+  background-image: url("assets/idly_sac.jpg");
 }
 
 .banner__card:nth-child(3) {
-  background-image: url("assets/dosa1\ sac.jpg");
+  background-image: url("assets/dosa1_sac.jpg");
 }
 
 .banner__card p {

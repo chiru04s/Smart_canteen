@@ -38,7 +38,7 @@ export default function AddCaterer() {
             {[
               { label:"Caterer Name *",  value:catererName, set:setCatererName, placeholder:"e.g. Ravi Kumar",    type:"text"     },
               { label:"Caterer ID *",    value:catererId,   set:setCatererId,   placeholder:"e.g. CAT001",        type:"text"     },
-              { label:"Password",        value:password,    set:setPassword,    placeholder:"Default: caterer123", type:"password" },
+              { label:"Password",        value:password,    set:setPassword,    placeholder:"caterer123", type:"password" },
               { label:"Phone (optional)",value:phone,       set:setPhone,       placeholder:"+91 99999 99999",     type:"tel"      },
             ].map(field => (
               <div key={field.label}>

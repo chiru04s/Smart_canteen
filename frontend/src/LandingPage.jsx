@@ -12,7 +12,7 @@ export default function LandingPage() {
         <header className="header">
           <nav>
             <div className="nav__header">
-              <div className="nav__logo">
+              {/* <div className="nav__logo">
                 <a href="#">
                   <img
                     src="assets/logo_sac-Photoroom.png"
@@ -25,6 +25,15 @@ export default function LandingPage() {
                     className="nav__logo-white"
                   />
                 </a>
+              </div> */}
+              <div className="nav__logo">
+                    <Link to="/">
+                          <img
+                            src="\assets\logo.png"
+                            alt="SAC Snack Vault Logo"
+                            className="nav__logo-img"
+                          />
+                      </Link>
               </div>
             </div>
             <ul className="nav__links" id="nav-links">
@@ -147,8 +156,8 @@ export default function LandingPage() {
                       <span>
                         <i className="ri-map-pin-2-fill" />
                       </span>
-                      📍 Sadakathullah Appa College, Rahmath Nagar, Tirunelveli
-                      -627011, Tamil Nadu, India,
+                      📍 Caneen,pune,india
+                         
                     </li>
                     <li>
                       <span>
@@ -158,7 +167,7 @@ export default function LandingPage() {
                         href="mailto:sacsnacksvault@gmail.com"
                         style={{ textDecoration: "none", color: "whitesmoke" }}
                       >
-                        ✉️ sacsnacksvault@gmail.com
+                        ✉️abc@gmail.com
                       </a>
                     </li>
                   </ul>
