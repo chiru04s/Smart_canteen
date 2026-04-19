@@ -1,65 +1,50 @@
 import React, { createContext, useState, useEffect } from "react";
+import { translations, defaultLang } from "./i18n";
 
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  // ✅ FIX: Read from "loginCredentials" key correctly
+  // ── User ──────────────────────────────────────────────────────────────────
   const storedUser = localStorage.getItem("loginCredentials");
   const [user, setUserState] = useState(storedUser ? JSON.parse(storedUser) : null);
 
-  // ✅ FIX: Wrap setUser so it ALWAYS saves to localStorage too
   const setUser = (userData) => {
-    if (userData) {
-      localStorage.setItem("loginCredentials", JSON.stringify(userData));
-    } else {
-      localStorage.removeItem("loginCredentials");
-    }
+    if (userData) localStorage.setItem("loginCredentials", JSON.stringify(userData));
+    else          localStorage.removeItem("loginCredentials");
     setUserState(userData);
   };
 
-  // Function to get cart storage key for each user
-  const getCartKey = (u) => `cart_${u ? u.id : "guest"}`;
+  // ── Language ──────────────────────────────────────────────────────────────
+  const [lang, setLang] = useState(localStorage.getItem("lang") || defaultLang);
+  const t = (key) => translations[lang]?.[key] || translations[defaultLang][key] || key;
+  const changeLang = (l) => { setLang(l); localStorage.setItem("lang", l); };
 
+  // ── Cart ──────────────────────────────────────────────────────────────────
+  const getCartKey = (u) => `cart_${u ? u.id : "guest"}`;
   const [cart, setCart] = useState([]);
 
-  // Load cart whenever user changes
   useEffect(() => {
-    const storedCart = localStorage.getItem(getCartKey(user));
-    setCart(storedCart ? JSON.parse(storedCart) : []);
+    const stored = localStorage.getItem(getCartKey(user));
+    setCart(stored ? JSON.parse(stored) : []);
   }, [user]);
 
-  // Save cart to localStorage whenever it changes
   useEffect(() => {
-    if (user) {
-      localStorage.setItem(getCartKey(user), JSON.stringify(cart));
-    }
+    if (user) localStorage.setItem(getCartKey(user), JSON.stringify(cart));
   }, [cart, user]);
 
-  // Function to Add Items to Cart — ✅ FIX: use _id (MongoDB) with fallback to id
   const addToCart = (item, quantity) => {
-    if (!user) {
-      console.warn("User is not logged in. Cannot add items to the cart.");
-      return;
-    }
-
+    if (!user) return;
     const itemKey = item._id || item.id;
-
-    setCart((prevCart) => {
-      const existingItem = prevCart.find((cartItem) => (cartItem._id || cartItem.id) === itemKey);
-      if (existingItem) {
-        return prevCart.map((cartItem) =>
-          (cartItem._id || cartItem.id) === itemKey
-            ? { ...cartItem, quantity: cartItem.quantity + quantity }
-            : cartItem
-        );
-      } else {
-        return [...prevCart, { ...item, quantity }];
-      }
+    setCart((prev) => {
+      const existing = prev.find((c) => (c._id || c.id) === itemKey);
+      if (existing)
+        return prev.map((c) => (c._id || c.id) === itemKey ? { ...c, quantity: c.quantity + quantity } : c);
+      return [...prev, { ...item, quantity }];
     });
   };
 
   return (
-    <AppContext.Provider value={{ user, setUser, cart, setCart, addToCart }}>
+    <AppContext.Provider value={{ user, setUser, cart, setCart, addToCart, lang, t, changeLang }}>
       {children}
     </AppContext.Provider>
   );

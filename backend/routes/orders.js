@@ -1,20 +1,12 @@
 const express = require('express');
-const router = express.Router();
-const {
-  placeOrder,
-  getUserOrders,
-  getAllOrders,
-  acceptOrder,
-  rejectOrder
-} = require('../controllers/order');
+const router  = express.Router();
+const { placeOrder, getUserOrders, getAllOrders, acceptOrder, rejectOrder, getSalesStats } = require('../controllers/order');
 
-// User routes
-router.post('/', placeOrder);                        // POST   /orders         — place order
-router.get('/user/:userId', getUserOrders);          // GET    /orders/user/:id — user's orders
-
-// Admin routes
-router.get('/admin/all', getAllOrders);              // GET    /orders/admin/all
-router.patch('/:orderId/accept', acceptOrder);       // PATCH  /orders/:id/accept
-router.patch('/:orderId/reject', rejectOrder);       // PATCH  /orders/:id/reject
+router.post('/',                   placeOrder);
+router.get('/user/:userId',        getUserOrders);
+router.get('/admin/all',           getAllOrders);
+router.get('/admin/stats',         getSalesStats);
+router.patch('/:orderId/accept',   acceptOrder);
+router.patch('/:orderId/reject',   rejectOrder);
 
 module.exports = router;

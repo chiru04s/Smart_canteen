@@ -12,9 +12,10 @@ const signUp = require("./routes/User/signUp");
 const login = require("./routes/User/login");
 const homePage = require("./routes/User/homepage");
 const orders = require("./routes/orders");
+const catererRoutes = require("./routes/caterer");
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 // Middleware
 app.use(cors()); // Allow all origins
@@ -32,21 +33,14 @@ app.use("/admin/dashboard/foodItems", addFoodItems);
 app.use("/signup", signUp);                                 // Creating Users
 app.use("/login", login);                                   // User Login
 app.use("/homepage", homePage);
-app.use("/orders", orders);                                // Order management
+app.use("/orders", orders);
+app.use("/caterer", catererRoutes);              // Caterer panel                                // Order management
 
-// Add this to handle the base URL
-app.get("/", (req, res) => {
-  res.status(200).json({
-    message: "Smart Canteen API is live!",
-    status: "Healthy"
-  });
-});
 // Global error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).sendFile(path.join(__dirname, "public", "error.html"));
 });
-
 // Connect to MongoDB, then start server
 // Connect to MongoDB, then start server
 connectDB().then(() => {

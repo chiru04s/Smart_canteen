@@ -7,127 +7,121 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AppContext } from "../../AppContext";
 
-const HomePage = () => {
+const LANGS = [{ code:"en", label:"EN" }, { code:"ta", label:"தமிழ்" }, { code:"hi", label:"हिंदी" }];
+
+export default function HomePage() {
   const navigate = useNavigate();
-  const { user, setUser, addToCart, cart } = useContext(AppContext);
+  const { user, setUser, addToCart, cart, t, lang, changeLang } = useContext(AppContext);
   const backendURL = `${import.meta.env.VITE_API_URL}`;
   const [foodItems, setFoodItems] = useState([]);
+  const [quantities, setQuantities] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchFoodItems = async () => {
-      try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/homepage`);
-        // response.data.data is the array from MongoDB
-        setFoodItems(response.data.data || []);
-      } catch (error) {
-        // Show actual error details so you can debug
-        console.error("Fetch error:", error.response?.data || error.message);
-        toast.error("Could not load food items. Is the backend running?");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchFoodItems();
+    axios.get(`${backendURL}/homepage`)
+      .then(r => setFoodItems(r.data.data || []))
+      .catch(() => toast.error("Could not load food items. Is backend running?"))
+      .finally(() => setLoading(false));
   }, []);
 
-  const [quantities, setQuantities] = useState({});
-
-  const handleQuantityChange = (itemKey, quantity) => {
-    setQuantities((prev) => ({ ...prev, [itemKey]: quantity }));
-  };
-
   const handleAddToCart = (item) => {
-    const itemKey = item._id || item.id;
-    const quantity = parseInt(quantities[itemKey]) || 1;
-    addToCart(item, quantity);
-    toast.success(`${quantity} × ${item.name} added to cart!`);
+    const key = item._id || item.id;
+    const qty = parseInt(quantities[key]) || 1;
+    addToCart(item, qty);
+    toast.success(`${qty} × ${item.name} ${t("addToCart")} ✅`);
   };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
-    localStorage.removeItem("loginCredentials");
     setUser(null);
     navigate("/login");
   };
 
-  const totalCartQuantity = cart.reduce((total, item) => total + item.quantity, 0);
+  const totalQty = cart.reduce((s, i) => s + i.quantity, 0);
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-50">
       <ToastContainer />
-      <nav className="flex justify-between items-center p-4 bg-white shadow">
-        <div className="flex items-center">
-          <img src="/logo.png" alt="Logo" className="w-8 h-8 mr-2" />
-        </div>
-        <div className="flex items-center space-x-4">
-          <FaUser />
-          <span>{user?.name || "User"}</span>
-          <Link to="/my-orders" className="text-sm text-gray-600 hover:text-green-700 font-medium hidden sm:block">
-            My Orders
+
+      <nav className="flex justify-between items-center px-4 py-3 bg-white shadow sticky top-0 z-10">
+        <img src="logo.png" alt="Logo" className="w-8 h-8" />
+
+        <div className="flex items-center gap-3 text-sm">
+          {/* Language switcher */}
+          <div className="flex gap-1 bg-gray-100 rounded-full p-1">
+            {LANGS.map(l => (
+              <button key={l.code} onClick={() => changeLang(l.code)}
+                className={`px-2 py-0.5 rounded-full text-xs font-semibold transition ${
+                  lang === l.code ? "bg-green-500 text-white" : "text-gray-600 hover:text-gray-800"
+                }`}>
+                {l.label}
+              </button>
+            ))}
+          </div>
+
+          <Link to="/my-orders" className="text-gray-600 hover:text-green-700 font-medium hidden sm:block">
+            {t("myOrders")}
           </Link>
+
+          <div className="flex items-center gap-1 text-gray-700">
+            <FaUser className="text-xs" />
+            <span className="hidden sm:block">{user?.name}</span>
+          </div>
+
           <Link to="/cart" className="relative">
-            <FaShoppingCart className="cursor-pointer text-green-600 text-xl" />
-            {totalCartQuantity > 0 && (
-              <span className="absolute border-red-600 border-2 -top-3 -right-2 bg-transparent text-red-700 rounded-full w-5 h-5 flex items-center justify-center text-xs font-extrabold">
-                {totalCartQuantity}
+            <FaShoppingCart className="text-green-600 text-xl" />
+            {totalQty > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs font-bold">
+                {totalQty}
               </span>
             )}
           </Link>
-          <button onClick={handleLogout} title="Logout">
+
+          <button onClick={handleLogout} className="text-gray-500 hover:text-red-500" title={t("logout")}>
             <FaSignOutAlt />
           </button>
         </div>
       </nav>
 
-      <div className="container mx-auto p-3 mt-5">
+      <div className="container mx-auto p-4 mt-4">
         {loading ? (
-          <p className="text-center text-gray-500 mt-10">Loading food items...</p>
+          <p className="text-center text-gray-400 py-16">{t("loading")}</p>
         ) : foodItems.length === 0 ? (
-          <div className="text-center mt-10">
-            <p className="text-gray-500 text-lg">No food items available yet.</p>
-            <p className="text-gray-400 text-sm mt-2">Ask the admin to add items from the Admin Dashboard.</p>
+          <div className="text-center py-16">
+            <p className="text-gray-500 text-lg mb-2">{t("noItems")}</p>
+            <p className="text-gray-400 text-sm">{t("noItemsHint")}</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {foodItems.map((item) => {
-              const itemKey = item._id || item.id;
+              const key = item._id || item.id;
               return (
-                <div key={itemKey} className="border bg-white rounded-lg p-4 shadow-md">
+                <div key={key} className="bg-white rounded-xl shadow hover:shadow-md transition overflow-hidden">
                   {item.image_path ? (
-                    <img
-                      src={`${backendURL}/uploads/${item.image_path}`}
-                      alt={item.name}
-                      className="w-full h-40 object-cover rounded-md"
-                      onError={(e) => { e.target.style.display = "none"; }}
-                    />
+                    <img src={`${backendURL}/uploads/${item.image_path}`} alt={item.name}
+                      className="w-full h-44 object-cover"
+                      onError={(e) => { e.target.style.display = "none"; }} />
                   ) : (
-                    <div className="w-full h-40 bg-gray-200 rounded-md flex items-center justify-center text-gray-400">
-                      No Image
-                    </div>
+                    <div className="w-full h-44 bg-gray-100 flex items-center justify-center text-gray-400 text-4xl">🍽️</div>
                   )}
-                  <h5 className="text-xl font-semibold mt-2">
-                    {item.name}{" "}
-                    <span className="text-green-600 ml-2">₹ {item.price}</span>
-                  </h5>
-                  <div className="flex justify-between items-center mt-4">
-                    <div>
-                      <label className="mr-2">Quantity:</label>
-                      <input
-                        type="number"
-                        min="1"
-                        value={quantities[itemKey] || 1}
-                        onChange={(e) => handleQuantityChange(itemKey, e.target.value)}
-                        className="border rounded px-2 py-1 w-16"
-                      />
+                  <div className="p-4">
+                    <div className="flex justify-between items-start mb-3">
+                      <h5 className="text-lg font-bold text-gray-800">{item.name}</h5>
+                      <span className="text-green-600 font-extrabold">₹{item.price}</span>
                     </div>
-                    <button
-                      className="bg-green-700 text-white px-4 py-2 rounded"
-                      onClick={() => handleAddToCart(item)}
-                    >
-                      Add to Cart
-                    </button>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <label className="text-xs text-gray-500">{t("quantity")}</label>
+                        <input type="number" min="1" value={quantities[key] || 1}
+                          onChange={(e) => setQuantities(p => ({ ...p, [key]: e.target.value }))}
+                          className="border rounded px-2 py-1 w-14 text-sm text-center" />
+                      </div>
+                      <button onClick={() => handleAddToCart(item)}
+                        className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded-lg font-semibold transition">
+                        + {t("addToCart")}
+                      </button>
+                    </div>
                   </div>
                 </div>
               );
@@ -137,6 +131,4 @@ const HomePage = () => {
       </div>
     </div>
   );
-};
-
-export default HomePage;
+}

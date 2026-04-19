@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
@@ -11,7 +12,7 @@ const CatererList = () => {
     const fetchCaterers = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}}/admin/dashboard/catererList`
+          `${import.meta.env.VITE_API_URL}/admin/dashboard/catererList`
         );
         console.log('Fetched caterers:', response.data.data); // Log the response
         setCaterers(response.data.data);

@@ -1,23 +1,18 @@
 import { Navigate, Outlet } from "react-router-dom";
 
-const UserProtectedRoute = () => {
+export const UserProtectedRoute = () => {
   const token = localStorage.getItem("token");
-  const role = localStorage.getItem("role");
-
-  console.log("User Protected:", token, role);
-
-  // If the user is logged in and has a user role, allow access
+  const role  = localStorage.getItem("role");
   return token && role === "user" ? <Outlet /> : <Navigate to="/login" />;
 };
 
-const AdminProtectedRoute = () => {
+export const AdminProtectedRoute = () => {
   const token = localStorage.getItem("token");
-  const role = localStorage.getItem("role");
-
-  console.log("Admin Protected:", token, role);
-
-  // If the admin is logged in and has an admin role, allow access
+  const role  = localStorage.getItem("role");
   return token && role === "admin" ? <Outlet /> : <Navigate to="/admin" />;
 };
 
-export { UserProtectedRoute, AdminProtectedRoute };
+export const CatererProtectedRoute = () => {
+  const token = localStorage.getItem("catererToken");
+  return token ? <Outlet /> : <Navigate to="/caterer/login" />;
+};
