@@ -41,8 +41,8 @@ export default function CatererDashboard() {
     if (!caterer) return;
     try {
       const [ordersRes, earningsRes] = await Promise.all([
-        axios.get(`http://localhost:3000/caterer/${caterer.caterer_id}/orders`),
-        axios.get(`http://localhost:3000/caterer/${caterer.caterer_id}/earnings`),
+        axios.get(`${import.meta.env.VITE_API_URL}/caterer/${caterer.caterer_id}/orders`),
+        axios.get(`${import.meta.env.VITE_API_URL}/caterer/${caterer.caterer_id}/earnings`),
       ]);
       setOrders(ordersRes.data.data || []);
       setEarnings(earningsRes.data.data);
@@ -65,7 +65,7 @@ export default function CatererDashboard() {
     setUpdatingId(orderId);
     try {
       const res = await axios.patch(
-        `http://localhost:3000/caterer/orders/${orderId}/status`,
+        `${import.meta.env.VITE_API_URL}/caterer/orders/${orderId}/status`,
         { status: nextStatus }
       );
       if (res.data.success) {
@@ -82,7 +82,7 @@ export default function CatererDashboard() {
   const handleToggleAvailability = async () => {
     try {
       const res = await axios.patch(
-        `http://localhost:3000/caterer/${caterer.caterer_id}/availability`
+        `${import.meta.env.VITE_API_URL}/caterer/${caterer.caterer_id}/availability`
       );
       setIsAvailable(res.data.isAvailable);
       toast.success(res.data.isAvailable ? "You are now Available ✅" : "You are now Unavailable ❌");

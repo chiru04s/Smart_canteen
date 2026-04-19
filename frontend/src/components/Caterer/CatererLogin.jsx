@@ -15,7 +15,7 @@ export default function CatererLogin() {
     if (!caterer_id || !password) { toast.error("Both fields required"); return; }
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:3000/caterer/login", { caterer_id, password });
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/caterer/login`, { caterer_id, password });
       if (res.data.success) {
         localStorage.setItem("catererToken", res.data.token);
         localStorage.setItem("catererInfo", JSON.stringify(res.data.caterer));
